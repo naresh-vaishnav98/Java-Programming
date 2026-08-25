@@ -37,11 +37,30 @@ public class LoopsPractice2 {
 
 
         //Write a program to print the multiplication table of a number N, entered by the user
-        System.out.println("Enter a Number : ");
-        int num = sc.nextInt();
+        // System.out.println("Enter a Number : ");
+        // int num = sc.nextInt();
 
-        for(int i = 1; i <= 10; i++){
-            System.out.println(num + "x" + i + "=" + num*i);
+        // for(int i = 1; i <= 10; i++){
+        //     System.out.println(num + "x" + i + "=" + num*i);
+        // }
+
+
+        // Write a java program to check the given number is palindrome or not
+        System.out.println("Enter a number : ");
+        int x = sc.nextInt();
+        int num = x;
+        int lastDig = 0;
+        int rev = 0;
+
+        while(num > 0){
+            lastDig = num % 10;
+            rev = (rev * 10) + lastDig;
+            num /=10;
         }
+         if(rev == x){
+            System.out.println("The Number is Palindrome !!");
+         }else{
+            System.out.println("The Number is Not Palindrome !!"); 
+         }
     }
 }
