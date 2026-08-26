@@ -47,17 +47,73 @@ public class Pattern {
         
 
         // INVERTED & ROTATED HALF-PYRAMID pattern
-        System.out.println("Enter a number of rows : ");
+        // System.out.println("Enter a number of rows : ");
+        // int rows = sc.nextInt();
+
+        // for(int i = 1; i <= rows; i++){
+        //     for(int j = 1; j <= rows-i; j++){
+        //         System.out.print(" ");
+        //     }
+        //     for(int k = 1; k <= i; k++){
+        //         System.out.print("*");
+        //     }
+        //     System.out.println();
+        // }
+
+
+
+
+        //INVERTED HALF-PYRAMID with Numbers pattern
+        // System.out.println("Enter number of rows : ");
+        // int rows = sc.nextInt();
+
+        // for(int i = 0; i < rows; i++){
+        //     for(int j = 1; j <= rows-i; j++){
+        //         System.out.print(j);
+        //     }
+        //     System.out.println();
+        // }
+
+
+
+        //FLOYD'S Triangle pattern
+        // System.out.println("Enter number of rows : ");
+        // int rows = sc.nextInt();
+
+        // int num = 1;
+
+        // for(int i = 1; i <= rows; i++){
+        //     for(int j = 1; j <= i; j++){
+        //         System.out.print(num);
+        //         num++;
+        //     }
+        //     System.out.println();
+        // }
+
+
+        //0-1 Triangle pattern
+
+        System.out.println("Enter number of rows : ");
         int rows = sc.nextInt();
 
         for(int i = 1; i <= rows; i++){
-            for(int j = 1; j <= rows-i; j++){
-                System.out.print(" ");
-            }
-            for(int k = 1; k <= i; k++){
-                System.out.print("*");
+            for(int j = 1; j <= i; j++){
+                if(i%2 == 0){                   
+                    if(j%2 == 0){
+                        System.out.print(1);
+                    }else{
+                        System.out.print(0);
+                    }
+                }else{
+                    if(j%2 == 0){
+                        System.out.print(0);
+                    }else{
+                        System.out.print(1);
+                    }
+                }
             }
             System.out.println();
         }
+
     }
 }
