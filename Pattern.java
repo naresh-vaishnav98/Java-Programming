@@ -93,25 +93,95 @@ public class Pattern {
 
         //0-1 Triangle pattern
 
+        // System.out.println("Enter number of rows : ");
+        // int rows = sc.nextInt();
+
+        // for(int i = 1; i <= rows; i++){
+        //     for(int j = 1; j <= i; j++){
+        //         if(i%2 == 0){                   
+        //             if(j%2 == 0){
+        //                 System.out.print(1);
+        //             }else{
+        //                 System.out.print(0);
+        //             }
+        //         }else{
+        //             if(j%2 == 0){
+        //                 System.out.print(0);
+        //             }else{
+        //                 System.out.print(1);
+        //             }
+        //         }
+        //     }
+        //     System.out.println();
+        // }
+
+
+        // Butterfly pattern
         System.out.println("Enter number of rows : ");
         int rows = sc.nextInt();
 
         for(int i = 1; i <= rows; i++){
-            for(int j = 1; j <= i; j++){
-                if(i%2 == 0){                   
-                    if(j%2 == 0){
-                        System.out.print(1);
-                    }else{
-                        System.out.print(0);
-                    }
+            for(int j = 1; j <= rows; j++){
+                if(j<=i){
+                    System.out.print("* ");
                 }else{
-                    if(j%2 == 0){
-                        System.out.print(0);
-                    }else{
-                        System.out.print(1);
-                    }
-                }
+                    System.out.print("  ");
+                }               
             }
+            for(int j = rows; j >= 1; j--){
+                if(j<=i){
+                    System.out.print("* ");
+                }else{
+                    System.out.print("  ");
+                }               
+            }
+                // for(int k = 1; k < rows-i+1; k++){
+                //     System.out.print("  ");
+                // }
+                // for(int l = 1; l <= i; l++){
+                //     System.out.print("* ");
+                // }
+            System.out.println();
+        }
+        // for(int i = 1; i <= rows; i++){
+        //     for(int j = rows; j >= 1; j--){
+        //         if(j>=i){
+        //             System.out.print("* ");
+        //         }else{
+        //             System.out.print("  ");
+        //         }               
+        //     }
+        //         for(int k = 1; k <= i-1; k++){
+        //             System.out.print("  ");
+        //         }
+        //         for(int l = i; l <= rows; l++){
+     
+        //             System.out.print("* ");
+        //         }
+        //     System.out.println();
+        // }
+        for(int i = rows; i >= 1; i--){
+            for(int j = 1; j <= rows; j++){
+                if(j<=i){
+                    System.out.print("* ");
+                }else{
+                    System.out.print("  ");
+                }               
+            }
+            for(int j = rows; j >= 1; j--){
+                if(j<=i){
+                    System.out.print("* ");
+                }else{
+                    System.out.print("  ");
+                }               
+            }
+            
+                // for(int k = 1; k < rows-i+1; k++){
+                //     System.out.print("  ");
+                // }
+                // for(int l = 1; l <= i; l++){
+                //     System.out.print("* ");
+                // }
             System.out.println();
         }
 

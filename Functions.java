@@ -67,8 +67,63 @@ public class Functions{
         return Bin;
     }
 
+    public static int avg3(int a, int b, int c){
+        int avg = (a+b+c)/3;
+        return avg;
+    }
+
+    public static boolean isEven(int a){
+        if(a % 2 == 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static boolean palindrom(int n){
+        int lastDig = 0;
+        int rev = 0;
+        int num = n;
+
+        while(n > 0){
+            lastDig = n % 10;
+            rev = (rev*10)+lastDig;
+            n = n/10;
+        }
+
+        if(rev == num){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static int sumOfDig(int n){
+        int lastDig = 0;
+        int sum = 0;
+        int num = n;
+
+        while(n > 0){
+            lastDig = n % 10;
+            sum = sum + lastDig;
+            n = n/10;
+        }
+
+        return sum;
+    }
+
     public static void main(String args[]){
-        System.out.println(binToDec(101));
-        System.out.println(decToBin(5));
+        // System.out.println(binToDec(101));
+        // System.out.println(decToBin(5));
+
+        // int avg = avg3(4,6,9);
+        // System.out.println(avg);
+
+        // System.out.println(isEven(10));
+
+        // System.out.println(palindrom(121));
+
+        System.out.println(sumOfDig(567));
+
     }
 }
