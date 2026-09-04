@@ -67,13 +67,132 @@ public class Arrays{
         return -1;
     }
 
+
+    public static void reverseArray(int arr[]){
+        
+        int start = 0;
+        int end = arr.length-1;
+
+        // System.out.print(arr[end]);
+        while(start < end){
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+
+            start++;
+            end--;
+        }
+        for(int i = 0; i < arr.length; i++){
+            System.out.print(arr[i]+" ");
+        }
+    }
+
+
+    public static void pairsInArray(int arr[]){
+
+        for(int i = 0; i < arr.length; i++){
+            int current = arr[i];
+            for(int j = i+1; j < arr.length; j++){
+                System.out.print("(" + current + "," + arr[j] + ")");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void subArray(int arr[]){
+        int start = 0;
+        int end = arr.length-1;
+
+        for(int i = 0; i < arr.length; i++){
+            int curr = arr[i];
+            for(int j = i+1; j < arr.length; j++){
+                for(int k = i; k <= j; k++){
+                    System.out.print(arr[k]+" ");
+                }
+                System.out.println();
+            }
+        }
+    }
+
+
+    public static void sumOfSubArray(int arr[]){
+        int start = 0;
+        int end = arr.length-1;
+
+        int max_sum = Integer.MIN_VALUE;
+        int sum = 0;
+
+        for(int i = 0; i < arr.length; i++){
+            int curr = arr[i];
+            for(int j = i+1; j < arr.length; j++){
+                for(int k = i; k <= j; k++){
+                    sum += arr[k];
+                    System.out.print(arr[k]+" ");
+                }
+                if(sum > max_sum){
+                    max_sum = sum;
+                }
+                System.out.println("Sum is : "+sum);
+                sum = 0;                
+            }
+        }
+
+        System.out.println("Max sum is : " + max_sum);
+    }
+
+
+    public static void prefixSubArray(int arr[]){
+        int start = 0;
+        int end = arr.length-1;
+
+        int max_sum = Integer.MIN_VALUE;
+        int sum = 0;
+
+        int prefixArr[] = new int [arr.length];
+
+        prefixArr[0] = arr[0];
+        for(int i = 1; i < prefixArr.length; i++){
+            prefixArr[i] = prefixArr[i-1] + arr[i];
+        }
+
+        for(int i = 0; i < arr.length; i++){
+            int curr = arr[i];
+            for(int j = i+1; j < arr.length; j++){
+                // for(int k = i; k <= j; k++){
+                //     sum += arr[k];
+                //     System.out.print(arr[k]+" ");
+                // }
+                sum = i == 0 ? prefixArr[j] : prefixArr[j] - prefixArr[i-1];
+
+                if(sum > max_sum){
+                    max_sum = sum;
+                }
+                System.out.println("Sum is : "+sum);
+                sum = 0;                
+            }
+        }
+
+        System.out.println("Max sum is : " + max_sum);
+    }
+
     public static void main(String args[]){
-        // array();
-        int num[] = {2,4,6,8,10,12,14};
+        // int num[] = {2,4,6,8,10,12,14};
+        int num[] = {1,-2,6,-1,3};
         // int key = 5;
         // System.out.println(linearSearch(num,key));
+
         // System.out.println(Largest(num));
 
-        System.out.println(binarySearch(num,12));
+        // System.out.println(binarySearch(num,12));
+
+        // reverseArray(num);
+
+        // pairsInArray(num);
+
+        // subArray(num);
+
+        // sumOfSubArray(num);
+
+        prefixSubArray(num);
     }
 }
