@@ -140,10 +140,8 @@ public class Arrays{
         System.out.println("Max sum is : " + max_sum);
     }
 
-
+//Prefix Sum
     public static void prefixSubArray(int arr[]){
-        int start = 0;
-        int end = arr.length-1;
 
         int max_sum = Integer.MIN_VALUE;
         int sum = 0;
@@ -156,12 +154,7 @@ public class Arrays{
         }
 
         for(int i = 0; i < arr.length; i++){
-            int curr = arr[i];
             for(int j = i+1; j < arr.length; j++){
-                // for(int k = i; k <= j; k++){
-                //     sum += arr[k];
-                //     System.out.print(arr[k]+" ");
-                // }
                 sum = i == 0 ? prefixArr[j] : prefixArr[j] - prefixArr[i-1];
 
                 if(sum > max_sum){
@@ -175,9 +168,31 @@ public class Arrays{
         System.out.println("Max sum is : " + max_sum);
     }
 
+// kadane's algorithm
+    public static void kadaneSubArray(int arr[]){
+
+        int max_sum = Integer.MIN_VALUE;
+        int sum = 0;
+
+        for(int i = 0; i < arr.length; i++){
+                sum += arr[i];
+                if(sum < 0){
+                    sum = 0;
+                }                
+
+                if(sum > max_sum){
+                    max_sum = sum;
+                }
+                System.out.println("Sum is : "+sum); 
+        }
+
+        System.out.println("Max sum is : " + max_sum);
+    }
+
     public static void main(String args[]){
         // int num[] = {2,4,6,8,10,12,14};
-        int num[] = {1,-2,6,-1,3};
+        // int num[] = {1,-2,6,-1,3};
+        int num[] = {-2,-3,4,-1,-2,1,5,-3};
         // int key = 5;
         // System.out.println(linearSearch(num,key));
 
@@ -193,6 +208,8 @@ public class Arrays{
 
         // sumOfSubArray(num);
 
-        prefixSubArray(num);
+        // prefixSubArray(num);
+
+        kadaneSubArray(num);
     }
 }
