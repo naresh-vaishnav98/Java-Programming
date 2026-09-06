@@ -32,10 +32,46 @@ public class Sortings{
         }
     }
 
+    public static void insertionSort(int arr[]){
+        for(int i = 1; i < arr.length; i++){
+            int curr = arr[i];
+            int j = i-1;
+            while(j >= 0 && curr < arr[j]){
+                arr[j+1] = arr[j];
+                j--;
+            }
+            arr[j+1] = curr;
+        }
+    }
+
+    public static void countSort(int arr[]){
+        int max = arr[0];
+        for(int i = 0; i < arr.length; i++){
+            if(arr[i] > max){
+                max = arr[i];
+            }
+        }
+        int count[] = new int [max+1];
+        for(int num : arr){
+            count[num]++;
+        }
+
+        int index = 0;
+        for(int i = 0; i <= max; i++){
+            while(count[i]>0){
+                arr[index] = i;
+                index++;
+                count[i]--;
+            }
+        }
+    }
+
     public static void main(String args[]){
         int arr[] = {3,6,2,1,8,7,4,5,3,1};
         // bubbleSorting(arr);
-        selectionSort(arr);
+        // selectionSort(arr);
+        // insertionSort(arr);
+        countSort(arr);
         printArray(arr);
     }
 }
