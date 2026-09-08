@@ -37,8 +37,53 @@ public class TwoDimArray{
         }
     }
 
+
+    public static int numCount(int arr[][],int key){
+        int count = 0;
+        for(int i = 0; i < arr.length; i++){
+            for(int j = 0; j < arr[0].length; j++){
+                if(arr[i][j] == key){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    public static void sumOfRow(int arr[][], int row){
+        int sum = 0;
+        int rowNum = row-1;
+
+        for(int i = 0; i < arr[rowNum].length; i++){
+            sum += arr[rowNum][i];
+        }
+        System.out.print(sum);
+    }
+
+    public static void transposeMatrix(int arr[][]){
+        int newArr[][] = new int [arr[0].length][arr.length];
+        for(int i = 0; i < arr.length; i++){
+            for(int j = 0; j < arr[0].length; j++){
+                newArr[j][i] = arr[i][j];
+            }
+        }
+
+        for(int i = 0; i < newArr.length; i++){
+            for(int j = 0; j < newArr[0].length; j++){
+                System.out.print(newArr[i][j]+" ");
+            }
+            System.out.println();
+        }
+    }
+
     public static void main(String args[]){
         int matrix[][] = {{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15,16},{17,18,19,20}};
-        spiralMatrix(matrix);
+        // spiralMatrix(matrix);
+
+        int nums[][] = { {1,4,9},{11,4,3},{2,2,3} };
+        // System.out.print(numCount(nums,3));
+
+        // sumOfRow(nums,2);
+        transposeMatrix(matrix);
     }
 }
