@@ -76,6 +76,48 @@ public class TwoDimArray{
         }
     }
 
+    public static void diagonalSum(int arr[][]){
+        int sum = 0;
+        int n = arr.length;
+        int m = arr[0].length;
+        // for(int i = 0; i < arr.length; i++){
+        //     for(int j = 0; j < arr[0].length; j++){
+        //         if(i == j){
+        //             sum += arr[i][j];
+        //         }else if((i+j) == (arr.length-1) && i != j){
+        //             sum += arr[i][j];
+        //         }
+        //     }
+        // }
+
+        for(int i = 0; i < arr.length; i++){
+            //Primary Diagonal
+            sum += arr[i][i];
+            //Secondary Diagonal
+            if(i != arr.length-1-i){
+                sum += arr[i][arr.length-1-i];
+            }
+            
+        }
+        System.out.print(sum);
+    }
+
+    public static boolean sortedMatrixSearch(int arr[][], int key){
+        int row = 0;
+        int col = arr[0].length-1;
+        while(row < arr.length && col >= 0){
+            if(key == arr[row][col]){
+                System.out.print("Key found at : ("+ row +","+ col +")");
+                return true;
+            }else if(key < arr[row][col]){
+                col--;
+            }else{
+                row++;
+            }
+        }
+        return false;
+    }
+
     public static void main(String args[]){
         int matrix[][] = {{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15,16},{17,18,19,20}};
         // spiralMatrix(matrix);
@@ -84,6 +126,10 @@ public class TwoDimArray{
         // System.out.print(numCount(nums,3));
 
         // sumOfRow(nums,2);
-        transposeMatrix(matrix);
+        // transposeMatrix(matrix);
+
+        // diagonalSum(nums);
+
+        sortedMatrixSearch(matrix,18);
     }
 }
