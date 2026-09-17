@@ -91,16 +91,56 @@ public class RecursionBasics{
         return xpn;
     }
 
+    public static int tilingProblem(int n){
+        if(n == 0 || n == 1){
+            return 1;
+        }
+        int fnm1 = tilingProblem(n-1);
+        int fnm2 = tilingProblem(n-2);
+
+        int totalWays = fnm1 + fnm2;
+        return totalWays;
+    }
+
+    public static void removeDuplicates(String str, boolean map[], StringBuilder sb, int idx){
+        if(idx == str.length()){
+            System.out.print(sb);
+            return;
+        }
+        char currChar = str.charAt(idx);
+        if(map[currChar-'a'] == true){
+            removeDuplicates(str,map,sb,idx+1);
+        }else{
+            map[currChar-'a'] = true;
+            removeDuplicates(str,map,sb.append(currChar),idx+1);
+        }
+    }
+
     public static void main(String args[]){
         // printDec(10);
+        
         // printInc(8);
+
         // System.out.print(fact(5));
+
         // System.out.print(natralNumSum(5));
+
         // System.out.print(fibonacciOfN(6));
-        int arr[] = {1,5,6,4,6,5};
+
+        // int arr[] = {1,5,6,4,6,5};
         // System.out.print(sortedArrayCheck(arr,0));
+
         // System.out.print(firstOccurance(arr,4,0));
+
         // System.out.print(lastOccurance(arr,5,arr.length-1));
-        System.out.print(xPowern(5,3));
+
+        // System.out.print(xPowern(5,3));
+
+        // System.out.print(tilingProblem(4));
+
+        String str = "nnaarreeessshhhh";
+        boolean map[] = new boolean [26];
+        StringBuilder sb = new StringBuilder();
+        removeDuplicates(str,map,sb,0);
     }
 }
