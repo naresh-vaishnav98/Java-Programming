@@ -50,6 +50,16 @@ public class RecursionPractice{
         return totCount;
     }
 
+    public static void towerOfHanoi(int n, char src, char helpr, char dest){
+        if(n == 1){
+            System.out.println(src + " to " + dest);
+            return;
+        }
+        towerOfHanoi(n-1,src,dest,helpr);
+        towerOfHanoi(1,src,helpr,dest);
+        towerOfHanoi(n-1,helpr,src,dest);
+    }
+
     public static void main(String args[]){
         // int arr[] = {3, 2, 4, 5, 6, 2, 7, 2, 2};
         // allOccurences(arr,2,0);
@@ -59,8 +69,10 @@ public class RecursionPractice{
 
         // System.out.print(stringLength("naresh",0));
 
-        String str = "abcab";
-        int len = str.length();
-        System.out.print(countSubStrings(str,0,len-1,len));
+        // String str = "abcab";
+        // int len = str.length();
+        // System.out.print(countSubStrings(str,0,len-1,len));
+
+        towerOfHanoi(3,'A','B','C');
     }
 }
