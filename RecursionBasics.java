@@ -116,9 +116,33 @@ public class RecursionBasics{
         }
     }
 
+    public static int friendsPairing(int n){
+        if(n == 1 || n == 2){
+            return n;
+        }
+
+        int fnm1 = friendsPairing(n-1);
+        int fnm2 = friendsPairing(n-2);
+        int pairWays = (n-1)*fnm2;
+
+        int totWays = fnm1+pairWays;
+        return totWays;
+    }
+
+    public static void binString(int n, int lastPlace, String str){
+        if(n == 0){
+            System.out.println(str);
+            return;
+        }
+        binString(n-1,0,str+"0");
+        if(lastPlace == 0){
+            binString(n-1,1,str+"1");
+        }        
+    }
+
     public static void main(String args[]){
         // printDec(10);
-        
+
         // printInc(8);
 
         // System.out.print(fact(5));
@@ -138,9 +162,13 @@ public class RecursionBasics{
 
         // System.out.print(tilingProblem(4));
 
-        String str = "nnaarreeessshhhh";
-        boolean map[] = new boolean [26];
-        StringBuilder sb = new StringBuilder();
-        removeDuplicates(str,map,sb,0);
+        // String str = "nnaarreeessshhhh";
+        // boolean map[] = new boolean [26];
+        // StringBuilder sb = new StringBuilder();
+        // removeDuplicates(str,map,sb,0);
+
+        // System.out.print(friendsPairing(3));
+
+        binString(4,0,"");
     }
 }
