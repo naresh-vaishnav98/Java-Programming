@@ -80,10 +80,63 @@ public class DivideAndConquer{
         return i;
     }
 
+    public static void stringMergeSort(String arr[], int si, int ei){
+        if(si >= ei){
+            return;
+        }
+        int mid = si + (ei - si)/2;
+        stringMergeSort(arr,si,mid);
+        stringMergeSort(arr,mid+1,ei);
+        mergeStrings(arr,si,mid,ei);
+    }
+
+    public static void mergeStrings(String arr[], int si, int mid, int ei){
+        int n1 = mid - si+1;
+        int n2 = ei - mid;
+
+        String leftArr[] = new String [n1];
+        String rightArr[] = new String [n2];
+
+        for(int i = 0; i < n1; i++){
+            leftArr[i] = arr[si+i];
+        }
+        for(int j = 0; j < n2; j++){
+            rightArr[j] = arr[mid+1+j];
+        }
+
+        int i = 0, j = 0;
+        int k = si; 
+        while(i < n1 && j < n2){
+            if(leftArr[i].compareTo(rightArr[j]) < 0){
+                arr[k] = leftArr[i];
+                i++;
+            }else{
+                arr[k] = rightArr[j];
+                j++;
+            }
+            k++;
+        }
+
+        while(i < n1){
+            arr[k] = leftArr[i];
+            i++;
+            k++;
+        }
+        while(j < n2){
+            arr[k] = rightArr[j];
+            j++;
+            k++;
+        }
+    }
+
     public static void main(String args[]){
-        int arr[] = {3,2,5,4,8,6};
+        // int arr[] = {3,2,5,4,8,6};
         // mergeSort(arr,0,arr.length-1);
-        quickSort(arr,0,arr.length-1);
+        // quickSort(arr,0,arr.length-1);
+
+        String arr[] = { "sun", "earth", "mars", "mercury" };
+        int ei = arr.length-1;
+        stringMergeSort(arr,0,ei);
         for(int i = 0; i < arr.length; i++){
             System.out.print(arr[i]+" ");
         }
