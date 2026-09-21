@@ -129,16 +129,31 @@ public class DivideAndConquer{
         }
     }
 
+    public static int majorityElement(int nums[]){
+        int count = 0;
+        Integer curr = null;
+        for(int num:nums){
+            if(count == 0){
+                curr = num;
+            }
+            count += (curr == num) ? 1 : -1;
+        }
+        return curr;
+    }
+
     public static void main(String args[]){
         // int arr[] = {3,2,5,4,8,6};
         // mergeSort(arr,0,arr.length-1);
         // quickSort(arr,0,arr.length-1);
 
-        String arr[] = { "sun", "earth", "mars", "mercury" };
-        int ei = arr.length-1;
-        stringMergeSort(arr,0,ei);
-        for(int i = 0; i < arr.length; i++){
-            System.out.print(arr[i]+" ");
-        }
+        // String arr[] = { "sun", "earth", "mars", "mercury" };
+        // int ei = arr.length-1;
+        // stringMergeSort(arr,0,ei);
+        // for(int i = 0; i < arr.length; i++){
+        //     System.out.print(arr[i]+" ");
+        // }
+
+        int arr[] = {2,2,1,1,1,2,2};
+        System.out.print(majorityElement(arr));
     }
 }
