@@ -73,6 +73,19 @@ public class BackTracking{
         }
      }
 
+    //Keypad Combination
+     public static void keypadCombination(String str, String ans, String keypad[]){
+        if(str == ""){
+            System.out.println(ans);
+            return;
+        }
+        String key = keypad[str.charAt(0) - 48];
+
+        for(int i = 0; i < key.length(); i++){
+            keypadCombination(str.substring(1),ans+key.charAt(i),keypad);
+        }
+     }
+
 
     public static void main(String args[]){
         // int maze[][] = { { 1, 0, 0, 0 },
@@ -87,9 +100,16 @@ public class BackTracking{
 
 
         // N-Queens
-        int n = 4;
-        char board[][] = {{'x','x','x','x'},{'x','x','x','x'},{'x','x','x','x'},{'x','x','x','x'}};
-        nQueens(board,n,0);
+        // int n = 4;
+        // char board[][] = {{'x','x','x','x'},{'x','x','x','x'},{'x','x','x','x'},{'x','x','x','x'}};
+        // nQueens(board,n,0);
+
+
+        //Keypad Combinations
+        String keypad[] = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        String str = "846";
+        String ans = "";
+        keypadCombination(str,ans,keypad);
         
     }
 }
