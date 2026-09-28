@@ -23,19 +23,73 @@ public class BackTracking{
     }
 
 
+    //N-Queens
+     public static void nQueens(char board[][], int n, int row){
+        if(row == n){
+            printBoard(board,n);
+            return;
+        }
+        for(int i = 0; i < n; i++){
+            if(isSafe(board,row,i,n)){
+                board[row][i] = 'Q';
+                nQueens(board,n,row+1);
+                board[row][i] = 'x';
+            }
+        }
+     }
+
+     public static boolean isSafe(char board[][], int row, int col, int n){
+        for(int i = row; i >= 0; i--){
+            if(board[i][col] == 'Q'){
+                return false;
+            }
+        }
+        for(int j = col; j >= 0; j--){
+            if(board[row][j] == 'Q'){
+                return false;
+            }
+        }
+
+        for(int i = row, j = col; i >= 0 && j >= 0; i--,j--){
+            if(board[i][j] == 'Q'){
+                return false;
+            }
+        }
+        for(int i = row, j = col; i >= 0 && j < n; i--,j++){
+            if(board[i][j] == 'Q'){
+                return false;
+            }
+        }
+        return true;
+     }
+
+     public static void printBoard(char board[][], int n){
+        System.out.println("-------Chess Board--------");
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < n; j++){
+                System.out.print(board[i][j]);
+            }
+            System.out.println();
+        }
+     }
+
+
     public static void main(String args[]){
-        // System.out.println("Hello guysss");
-        int maze[][] = { { 1, 0, 0, 0 },
-                        { 1, 1, 0, 1 },
-                        { 0, 1, 0, 0 },
-                        { 1, 1, 1, 1 } };
         // int maze[][] = { { 1, 0, 0, 0 },
         //                 { 1, 1, 0, 1 },
-        //                 { 1, 1, 0, 0 },
-        //                 { 0, 1, 1, 1 } };
-        String path = "";
-        List<String> ans = new ArrayList<>();
-        ratMaze(maze,0,0,path,ans);
-        System.out.print(ans);
+        //                 { 0, 1, 0, 0 },
+        //                 { 1, 1, 1, 1 } };
+        
+        // String path = "";
+        // List<String> ans = new ArrayList<>();
+        // ratMaze(maze,0,0,path,ans);
+        // System.out.print(ans);
+
+
+        // N-Queens
+        int n = 4;
+        char board[][] = {{'x','x','x','x'},{'x','x','x','x'},{'x','x','x','x'},{'x','x','x','x'}};
+        nQueens(board,n,0);
+        
     }
 }
