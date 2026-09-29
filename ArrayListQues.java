@@ -18,15 +18,39 @@ public class ArrayListQues{
         return increasing || decreasing;
     }
 
+
+    public static ArrayList<Integer> lonelyNumber(ArrayList<Integer> nums, ArrayList<Integer> ans){
+        for(int i = 0; i < nums.size(); i++){
+            int currNum = nums.get(i);
+            int numStatus = 1;
+            for(int j = 0; j < nums.size(); j++){
+                if(i != j && currNum == nums.get(j)){
+                    numStatus = 0;
+                }
+            }
+            for(int k = 0; k < nums.size(); k++){
+                if(nums.get(k) == currNum+1 || nums.get(k) == currNum-1){
+                    numStatus = 0;
+                }
+            }
+            if(numStatus == 1){
+                ans.add(currNum);
+            }
+        }
+        return ans;
+    }
+
     public static void main(String args[]){
         // System.out.println("Hello");
         ArrayList<Integer> nums = new ArrayList<>();
+        nums.add(1);
+        nums.add(3);
         nums.add(5);
-        nums.add(4);
-        nums.add(4);
         nums.add(3);
         System.out.println(nums);
 
-        System.out.print(isMonotonic(nums));
+        // System.out.print(isMonotonic(nums));
+        ArrayList<Integer> ans = new ArrayList<>();
+        System.out.print(lonelyNumber(nums,ans));
     }
 }
