@@ -58,6 +58,29 @@ public class ArrayListQues{
         System.out.print(ans);
     }
 
+    public static ArrayList<Integer> beautifulArray(int n){
+        ArrayList<Integer> ans = new ArrayList<>();
+        ans.add(1);
+
+        while(ans.size() < n){
+            ArrayList<Integer> temp = new ArrayList<>();
+            for(int num:ans){
+                if(2*num-1 <= n){
+                    temp.add(2*num-1);
+                }
+            }
+
+            for(int num:ans){
+                if(2*num <= n){
+                    temp.add(2*num);
+                }
+            }
+
+            ans = temp;
+        }
+        return ans;
+    }
+
     public static void main(String args[]){
         // System.out.println("Hello");
         ArrayList<Integer> nums = new ArrayList<>();
@@ -66,12 +89,14 @@ public class ArrayListQues{
         nums.add(200);
         nums.add(1);
         nums.add(100);
-        System.out.println(nums);
+        // System.out.println(nums);
 
         // System.out.print(isMonotonic(nums));
         // ArrayList<Integer> ans = new ArrayList<>();
         // System.out.print(lonelyNumber(nums,ans));
 
-        numbFollowingKey(nums,1);
+        // numbFollowingKey(nums,1);
+
+        System.out.print(beautifulArray(5));
     }
 }
