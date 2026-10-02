@@ -53,6 +53,40 @@ class LinkedList{
         newNode.next = curr.next;
         curr.next = newNode;
     }
+
+    
+
+    void removeFirst(){
+        if(size == 0){
+            System.out.println("Linked List is empty!!");
+            return;
+        }else if(size == 1){
+            head = tail = null;
+            size = 0;
+            return;
+        }
+        head = head.next;
+        size--;
+    }
+
+    void removeLast(){
+        if(size == 0){
+            System.out.println("Linked List is empty!!");
+            return;
+        }else if(size == 1){
+            head = tail = null;
+            size = 0;
+            return;
+        }
+
+        Node prev = head;
+        for(int i = 0; i < size-2; i++){
+            prev = prev.next;
+        }
+        prev.next = null;
+        tail = prev.next;
+        size--;
+    }
 }
 
 class Node{
@@ -82,13 +116,17 @@ public class BasicNode{
         // LL.tail = p4;
         
 
-        LL.addFirst(50);
-        LL.addFirst(60);
+        LL.addFirst(20);
+        LL.addFirst(10);
 
-        LL.addLast(70);
-        LL.addLast(80);
+        LL.addLast(30);
+        LL.addLast(40);
 
         LL.addInMiddle(25,1);
+
+        LL.removeFirst();
+        LL.removeLast();
+
 
         LL.printLinkedlist();
         System.out.print("Size of the Linked list is : "+LL.size);
