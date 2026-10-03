@@ -214,6 +214,36 @@ class LinkedList{
         }
         return false;
     }
+
+    void removeCycle(){
+        //Detect cycle
+        Node slow = head;
+        Node fast = head;
+
+        boolean isCycle = false;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow == fast){
+                isCycle = true;
+                break;
+            }
+        }
+
+        if(isCycle = false){
+            return;
+        }
+
+        Node prev = null;
+        slow = head;
+        while(slow != fast){
+            prev = fast;
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        prev.next = null;
+    }
 }
 
 class Node{
@@ -228,28 +258,30 @@ class Node{
 
 public class BasicNode{
     public static void main(String args[]){
-        // Node p1 = new Node(10);
-        // Node p2 = new Node(20);
-        // Node p3 = new Node(30);
-        // Node p4 = new Node(40);
+        Node p1 = new Node(10);
+        Node p2 = new Node(20);
+        Node p3 = new Node(30);
+        Node p4 = new Node(40);
 
-        // p1.next = p2;
-        // p2.next = p3;
-        // p3.next = p4;
+        p1.next = p2;
+        p2.next = p3;
+        p3.next = p4;
+
+        p4.next = p2;
 
         // System.out.print(p1.next);
         LinkedList LL = new LinkedList();
-        // LL.head = p1;
+        LL.head = p1;
         // LL.tail = p4;
         
 
-        LL.addFirst(20);
-        LL.addFirst(10);
+        // LL.addFirst(20);
+        // LL.addFirst(10);
 
-        LL.addLast(30);
-        LL.addLast(40);
+        // LL.addLast(30);
+        // LL.addLast(40);
 
-        LL.addInMiddle(25,2);
+        // LL.addInMiddle(25,2);
 
         // LL.removeFirst();
         // LL.removeLast();
@@ -260,7 +292,7 @@ public class BasicNode{
         // LL.recursiveSearch(40,0,temp);
 
 
-        LL.printLinkedlist();
+        // LL.printLinkedlist();
         System.out.println("Size of the Linked list is : "+LL.size);
         // LL.reverseLL();
         // LL.removeNthfromEnd(3);
@@ -272,6 +304,8 @@ public class BasicNode{
         
         // System.out.println(LL.checkPalindrome());
 
+        System.out.println(LL.checkCycleinLL());
+        LL.removeCycle();
         System.out.println(LL.checkCycleinLL());
         
         
