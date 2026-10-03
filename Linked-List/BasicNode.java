@@ -130,6 +130,30 @@ class LinkedList{
 
         head = prev;
     }
+
+    void removeNthfromEnd(int n){
+        int sz = 0;
+        Node curr = head;
+        while(curr != null){
+            curr = curr.next;
+            sz++;
+        }
+
+        if(n == sz){
+            head = head.next;
+            return;
+        }
+
+        int i = 1;
+        int iToFind = sz-n;
+        Node prev = head;
+        while(i < iToFind){
+            prev = prev.next;
+            i++;
+        }
+        prev.next = prev.next.next;
+        return;
+    }
 }
 
 class Node{
@@ -165,7 +189,7 @@ public class BasicNode{
         LL.addLast(30);
         LL.addLast(40);
 
-        LL.addInMiddle(25,1);
+        LL.addInMiddle(25,2);
 
         // LL.removeFirst();
         // LL.removeLast();
@@ -177,7 +201,8 @@ public class BasicNode{
 
 
         LL.printLinkedlist();
-        LL.reverseLL();
+        // LL.reverseLL();
+        LL.removeNthfromEnd(3);
         LL.printLinkedlist();
         System.out.print("Size of the Linked list is : "+LL.size);
     }
