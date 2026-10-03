@@ -200,6 +200,20 @@ class LinkedList{
         }
         return true;
     }
+
+    boolean checkCycleinLL(){
+        Node slow = head;
+        Node fast = head;
+
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow == fast){
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
 class Node{
@@ -232,8 +246,8 @@ public class BasicNode{
         LL.addFirst(20);
         LL.addFirst(10);
 
-        LL.addLast(20);
-        LL.addLast(10);
+        LL.addLast(30);
+        LL.addLast(40);
 
         LL.addInMiddle(25,2);
 
@@ -247,6 +261,7 @@ public class BasicNode{
 
 
         LL.printLinkedlist();
+        System.out.println("Size of the Linked list is : "+LL.size);
         // LL.reverseLL();
         // LL.removeNthfromEnd(3);
         // LL.printLinkedlist();
@@ -255,8 +270,10 @@ public class BasicNode{
         // Node mid = LL.midofLL();
         // System.out.println("Mid is : "+mid.data);
         
-        System.out.println(LL.checkPalindrome());
+        // System.out.println(LL.checkPalindrome());
+
+        System.out.println(LL.checkCycleinLL());
         
-        System.out.print("Size of the Linked list is : "+LL.size);
+        
     }
 }
