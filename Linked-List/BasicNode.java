@@ -87,6 +87,49 @@ class LinkedList{
         tail = prev.next;
         size--;
     }
+
+    void itertiveSearch(int num){
+        Node curr = head;
+
+        for(int i = 0; i < size; i++){
+            if(curr.data == num){
+                System.out.println("Element found at Index : "+i);
+                return;
+            }
+            curr = curr.next;
+        }
+        System.out.println("Element Not Found !!");
+        return;
+    }
+
+    void recursiveSearch(int num, int idx, Node temp){
+        if(temp == null){
+            System.out.println("Element Not Found !!");
+            return;
+        }
+        if(temp.data == num){
+            System.out.println("Element found at Index : "+idx);
+            return;
+        }
+        temp = temp.next;
+        recursiveSearch(num,idx+1,temp);
+
+    }
+
+    void reverseLL(){
+        Node prev = null;
+        Node curr = tail = head;
+        Node next;
+
+        while(curr != null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        head = prev;
+    }
 }
 
 class Node{
@@ -124,10 +167,17 @@ public class BasicNode{
 
         LL.addInMiddle(25,1);
 
-        LL.removeFirst();
-        LL.removeLast();
+        // LL.removeFirst();
+        // LL.removeLast();
+
+        // LL.itertiveSearch(30);
+
+        // Node temp = LL.head;
+        // LL.recursiveSearch(40,0,temp);
 
 
+        LL.printLinkedlist();
+        LL.reverseLL();
         LL.printLinkedlist();
         System.out.print("Size of the Linked list is : "+LL.size);
     }
