@@ -154,6 +154,52 @@ class LinkedList{
         prev.next = prev.next.next;
         return;
     }
+
+    Node midofLL(){
+        Node slow = head;
+        Node fast = head;
+
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow;
+    }
+
+    boolean checkPalindrome(){
+        if(head == null || head.next == null){
+            return true;
+        }
+
+        //Find mid
+        Node mid = midofLL();
+
+        //reverse ssecond half
+        Node prev = null;
+        Node curr = mid;
+        Node next;
+
+        while(curr != null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        //check left and right
+        Node left = head;
+        Node right = prev;
+
+        while(right != null){
+            if(left.data != right.data){
+                return false;
+            }
+            left = left.next;
+            right = right.next;
+        }
+        return true;
+    }
 }
 
 class Node{
@@ -186,8 +232,8 @@ public class BasicNode{
         LL.addFirst(20);
         LL.addFirst(10);
 
-        LL.addLast(30);
-        LL.addLast(40);
+        LL.addLast(20);
+        LL.addLast(10);
 
         LL.addInMiddle(25,2);
 
@@ -202,8 +248,15 @@ public class BasicNode{
 
         LL.printLinkedlist();
         // LL.reverseLL();
-        LL.removeNthfromEnd(3);
-        LL.printLinkedlist();
+        // LL.removeNthfromEnd(3);
+        // LL.printLinkedlist();
+
+
+        // Node mid = LL.midofLL();
+        // System.out.println("Mid is : "+mid.data);
+        
+        System.out.println(LL.checkPalindrome());
+        
         System.out.print("Size of the Linked list is : "+LL.size);
     }
 }
