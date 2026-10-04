@@ -244,6 +244,66 @@ class LinkedList{
 
         prev.next = null;
     }
+
+    Node getMid(Node head){
+        Node slow = head;
+        Node fast = head.next;
+
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow;
+    }
+
+    Node merge(Node leftHead, Node rightHead){
+        Node newNode = new Node(-1);
+        Node temp = newNode;
+
+        while(leftHead != null && rightHead != null){
+            if(leftHead.data <= rightHead.data){
+                temp.next = leftHead;
+                leftHead = leftHead.next;
+                temp = temp.next;
+            }else{
+                temp.next = rightHead;
+                rightHead = rightHead.next;
+                temp = temp.next;
+            }
+        }
+
+        while(leftHead != null){
+            temp.next = leftHead;
+            leftHead = leftHead.next;
+            temp = temp.next;
+        }
+        while(rightHead != null){
+            temp.next = rightHead;
+            rightHead = rightHead.next;
+            temp = temp.next;
+        }
+
+        return newNode.next;
+    }
+
+    Node mergeSort(Node head){
+        if(head == null || head.next == null){
+            return head;
+        }
+
+        // getMid
+        Node midNode = getMid(head);
+        Node rightHd = midNode.next;
+
+        //divide in 2 parts
+        midNode.next = null;
+        Node leftHead = mergeSort(head);
+        Node rightHead = mergeSort(rightHd);
+
+        //merge
+        return merge(leftHead, rightHead);
+    }
 }
 
 class Node{
@@ -258,16 +318,16 @@ class Node{
 
 public class BasicNode{
     public static void main(String args[]){
-        Node p1 = new Node(10);
-        Node p2 = new Node(20);
-        Node p3 = new Node(30);
-        Node p4 = new Node(40);
+        Node p1 = new Node(40);
+        Node p2 = new Node(30);
+        Node p3 = new Node(20);
+        Node p4 = new Node(10);
 
         p1.next = p2;
         p2.next = p3;
         p3.next = p4;
 
-        p4.next = p2;
+        // p4.next = p2;
 
         // System.out.print(p1.next);
         LinkedList LL = new LinkedList();
@@ -292,7 +352,7 @@ public class BasicNode{
         // LL.recursiveSearch(40,0,temp);
 
 
-        // LL.printLinkedlist();
+        LL.printLinkedlist();
         System.out.println("Size of the Linked list is : "+LL.size);
         // LL.reverseLL();
         // LL.removeNthfromEnd(3);
@@ -304,10 +364,12 @@ public class BasicNode{
         
         // System.out.println(LL.checkPalindrome());
 
-        System.out.println(LL.checkCycleinLL());
-        LL.removeCycle();
-        System.out.println(LL.checkCycleinLL());
+        // System.out.println(LL.checkCycleinLL());
+        // // LL.removeCycle();
+        // System.out.println(LL.checkCycleinLL());
         
-        
+
+        LL.head = LL.mergeSort(LL.head);
+        LL.printLinkedlist();
     }
 }
