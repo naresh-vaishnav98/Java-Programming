@@ -416,6 +416,7 @@ public class BasicNode{
         // LL.head = LL.mergeSort(LL.head);
         LL.printLinkedlist();
         LL.zigzig();
+        System.out.println("Zigzag Linked List : ");
         LL.printLinkedlist();
     }
 }
