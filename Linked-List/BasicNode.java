@@ -304,6 +304,48 @@ class LinkedList{
         //merge
         return merge(leftHead, rightHead);
     }
+
+
+    void zigzig(){
+        // find mid and divide
+        Node slow = head;
+        Node fast = head.next;
+
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        Node midNode = slow;
+        Node rightHead = midNode.next;
+        slow.next = null;
+
+        // reverse second half
+        Node prev = null;
+        Node curr = rightHead;
+        Node next;
+
+        while(curr != null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        // merge in zigzag fashion
+        Node left = head;
+        Node right = prev;
+        Node nextL, nextR;
+
+        while(left != null && right != null){
+            nextL = left.next;
+            left.next = right;
+            nextR = right.next;
+            right.next = nextL;
+
+            left = nextL;
+            right = nextR;
+        }
+    }
 }
 
 class Node{
@@ -318,14 +360,16 @@ class Node{
 
 public class BasicNode{
     public static void main(String args[]){
-        Node p1 = new Node(40);
-        Node p2 = new Node(30);
-        Node p3 = new Node(20);
-        Node p4 = new Node(10);
+        Node p1 = new Node(10);
+        Node p2 = new Node(20);
+        Node p3 = new Node(30);
+        Node p4 = new Node(40);
+        Node p5 = new Node(50);
 
         p1.next = p2;
         p2.next = p3;
         p3.next = p4;
+        p4.next = p5;
 
         // p4.next = p2;
 
@@ -352,7 +396,7 @@ public class BasicNode{
         // LL.recursiveSearch(40,0,temp);
 
 
-        LL.printLinkedlist();
+        // LL.printLinkedlist();
         System.out.println("Size of the Linked list is : "+LL.size);
         // LL.reverseLL();
         // LL.removeNthfromEnd(3);
@@ -369,7 +413,9 @@ public class BasicNode{
         // System.out.println(LL.checkCycleinLL());
         
 
-        LL.head = LL.mergeSort(LL.head);
+        // LL.head = LL.mergeSort(LL.head);
+        LL.printLinkedlist();
+        LL.zigzig();
         LL.printLinkedlist();
     }
 }
