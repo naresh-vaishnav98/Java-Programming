@@ -33,6 +33,21 @@ public class DoublyLL{
         }
     }
 
+    void reverseDLL(){
+        Node prev = null;
+        Node curr = head;
+        Node next;
+
+        while(curr != null){
+            next = curr.next;
+            curr.next = prev;
+            curr.prev = next;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+    }
+
     public static class Node{
         int data;
         Node next;
@@ -73,6 +88,8 @@ public class DoublyLL{
         // dll.addLast(6);
         // dll.print();
         // dll.removeLast();
-        // dll.print();
+        dll.print();
+        dll.reverseDLL();
+        dll.print();
     }
 }
