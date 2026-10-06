@@ -346,6 +346,24 @@ class LinkedList{
             right = nextR;
         }
     }
+
+    public Node intersectingNode(Node head1, Node head2){
+        Node curr1 = head1;
+        Node curr2 = head2;
+
+        while(curr1 != curr2){
+            curr1 = curr1.next;
+            curr2 = curr2.next;
+            if(curr1 == null && curr2 == null){
+                return null;
+            }else if(curr1 == null){
+                curr1 = head2;
+            }else if(curr2 == null){
+                curr2 = head1;
+            }
+        }
+        return curr1;
+    }
 }
 
 class Node{
@@ -371,12 +389,26 @@ public class BasicNode{
         p3.next = p4;
         p4.next = p5;
 
+
+        Node q1 = new Node(1);
+        Node q2 = new Node(2);
+        Node q3 = new Node(3);
+
+        q1.next = q2;
+        q2.next = q3;
+        q3.next = p4;
+
+
+
         // p4.next = p2;
 
         // System.out.print(p1.next);
         LinkedList LL = new LinkedList();
+        LinkedList LL1 = new LinkedList();
         LL.head = p1;
         // LL.tail = p4;
+
+        LL1.head = q1;
         
 
         // LL.addFirst(20);
@@ -415,8 +447,13 @@ public class BasicNode{
 
         // LL.head = LL.mergeSort(LL.head);
         LL.printLinkedlist();
-        LL.zigzig();
-        System.out.println("Zigzag Linked List : ");
-        LL.printLinkedlist();
+        // LL.zigzig();
+        // System.out.println("Zigzag Linked List : ");
+        // LL.printLinkedlist();
+
+        System.out.println("List 2  : ");
+        LL1.printLinkedlist();
+        Node intrsct = LL.intersectingNode(LL.head,LL1.head);
+        System.out.println("Intersecting Node is : "+intrsct.data);
     }
 }
