@@ -347,6 +347,8 @@ class LinkedList{
         }
     }
 
+
+    //Intersection of Two Linked Lists
     public Node intersectingNode(Node head1, Node head2){
         Node curr1 = head1;
         Node curr2 = head2;
@@ -364,6 +366,25 @@ class LinkedList{
         }
         return curr1;
     }
+
+    //Delete N Nodes After M Nodes of a Linked List
+    public void delete_N_Nodes(int m, int n){
+        Node prev = null;
+        Node curr = head;
+
+        while(curr !=  null){
+            for(int i = 0; i < m && curr != null; i++){
+                prev = curr;
+                curr = curr.next;
+            }
+
+            for(int i = 0; i < n && curr != null; i++){
+                curr = curr.next;
+            }
+
+            prev.next = curr;
+        }
+    } 
 }
 
 class Node{
@@ -451,9 +472,13 @@ public class BasicNode{
         // System.out.println("Zigzag Linked List : ");
         // LL.printLinkedlist();
 
-        System.out.println("List 2  : ");
-        LL1.printLinkedlist();
-        Node intrsct = LL.intersectingNode(LL.head,LL1.head);
-        System.out.println("Intersecting Node is : "+intrsct.data);
+        // System.out.println("List 2  : ");
+        // LL1.printLinkedlist();
+        // Node intrsct = LL.intersectingNode(LL.head,LL1.head);
+        // System.out.println("Intersecting Node is : "+intrsct.data);
+
+        LL.delete_N_Nodes(1,1);
+        System.out.println("List after deleting : ");
+        LL.printLinkedlist();
     }
 }
