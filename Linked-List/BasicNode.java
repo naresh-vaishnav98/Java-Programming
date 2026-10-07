@@ -384,7 +384,78 @@ class LinkedList{
 
             prev.next = curr;
         }
-    } 
+    }
+
+    //Swapping nodes in Linked list
+    // public void swappingNodes(int key1, int key2){
+    //     Node prev1 = null;
+    //     Node prev2 = null;
+    //     Node curr1 = head;
+    //     Node curr2 = head;
+        
+    //     while(curr1.data != key1){
+    //         prev1 = curr1;
+    //         curr1 = curr1.next;
+    //     }
+    //     System.out.println("Curr1 : "+ curr1.data + " Prev1 : "+prev1.data);
+    //     while(curr2.data != key2){
+    //         prev2 = curr2;
+    //         curr2 = curr2.next;
+    //     }
+    //     System.out.println("Curr2 : "+ curr2.data + " Prev2 : "+prev2.data);
+
+    //     Node curr1nxt = curr1.next;
+    //     Node curr2nxt = curr2.next;
+
+    //     prev1.next = curr2;
+    //     prev2.next = curr1;
+    //     curr1.next = curr2nxt;
+    //     curr2.next = curr1nxt;
+    // }
+
+    public void swappingNodes(int key1, int key2) {
+        // 1. If both keys are the same, no need to swap
+        if (key1 == key2) return;
+
+        Node prev1 = null, curr1 = head;
+        // Find key1 and its previous node safely
+        while (curr1 != null && curr1.data != key1) {
+            prev1 = curr1;
+            curr1 = curr1.next;
+        }
+
+        Node prev2 = null, curr2 = head;
+        // Find key2 and its previous node safely
+        while (curr2 != null && curr2.data != key2) {
+            prev2 = curr2;
+            curr2 = curr2.next;
+        }
+
+        // 2. If either key is not found in the list, exit
+        if (curr1 == null || curr2 == null) {
+            System.out.println("One or both keys not found in the list!");
+            return;
+        }
+
+        // 3. If key1 was not at the head, update prev1.next; otherwise update head
+        if (prev1 != null) {
+            prev1.next = curr2;
+        } else {
+            head = curr2; // curr2 is the new head
+        }
+
+        // 4. If key2 was not at the head, update prev2.next; otherwise update head
+        if (prev2 != null) {
+            prev2.next = curr1;
+        } else {
+            head = curr1; // curr1 is the new head
+        }
+
+        // 5. Swap the next pointers
+        Node temp = curr1.next;
+        curr1.next = curr2.next;
+        curr2.next = temp;
+    }
 }
 
 class Node{
@@ -477,8 +548,12 @@ public class BasicNode{
         // Node intrsct = LL.intersectingNode(LL.head,LL1.head);
         // System.out.println("Intersecting Node is : "+intrsct.data);
 
-        LL.delete_N_Nodes(1,1);
-        System.out.println("List after deleting : ");
+        // LL.delete_N_Nodes(1,1);
+        // System.out.println("List after deleting : ");
+        // LL.printLinkedlist();
+
+        LL.swappingNodes(10,50);
+        System.out.println("List after swapping : ");
         LL.printLinkedlist();
     }
 }
