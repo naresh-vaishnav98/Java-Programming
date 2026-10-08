@@ -13,17 +13,37 @@ public class StackPractice{
         s.push(top);
     }
 
+    public static String reverseString(String str){
+        Stack<Character> s = new Stack<>();
+        int idx = 0;
+        while(idx < str.length()){
+            s.push(str.charAt(idx));
+            idx++;
+        }
+
+        String res = "";
+        while(!s.isEmpty()){
+            char ch = s.pop();
+            res = res + ch;
+        }
+        return res;
+    }
+
     public static void main(String args[]){
         // System.out.println("Hello");
-        Stack<Integer> s = new Stack<>();
-        s.push(1);
-        s.push(2);
-        s.push(3);
+        
+        // Stack<Integer> s = new Stack<>();
+        // s.push(1);
+        // s.push(2);
+        // s.push(3);
 
-        pushAtBottom(s,4);
+        // pushAtBottom(s,4);
 
-        while(!s.isEmpty()){
-            System.out.println(s.pop());
-        }
+        // while(!s.isEmpty()){
+        //     System.out.println(s.pop());
+        // }
+
+        
+        System.out.println(reverseString("Naresh"));
     }
 }
