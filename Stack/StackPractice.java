@@ -29,13 +29,23 @@ public class StackPractice{
         return res;
     }
 
+    public static void reverseStack(Stack<Integer> s){
+        if(s.isEmpty()){
+            return;
+        }
+        int data = s.pop();
+        reverseStack(s);
+        // s.push(data);
+        pushAtBottom(s,data);
+    }
+
     public static void main(String args[]){
         // System.out.println("Hello");
         
-        // Stack<Integer> s = new Stack<>();
-        // s.push(1);
-        // s.push(2);
-        // s.push(3);
+        Stack<Integer> s = new Stack<>();
+        s.push(1);
+        s.push(2);
+        s.push(3);
 
         // pushAtBottom(s,4);
 
@@ -44,6 +54,11 @@ public class StackPractice{
         // }
 
         
-        System.out.println(reverseString("Naresh"));
+        // System.out.println(reverseString("Naresh"));
+
+        reverseStack(s);
+        while(!s.isEmpty()){
+            System.out.println(s.pop());
+        }
     }
 }
