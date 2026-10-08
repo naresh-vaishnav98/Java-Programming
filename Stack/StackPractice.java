@@ -59,7 +59,28 @@ public class StackPractice{
 
             s.push(i);
         }
-     }
+    }
+
+    public static int[] nextGreater(int arr[]){
+        int nxtGreat[] = new int[arr.length];
+        Stack<Integer> s = new Stack<>();
+
+        for(int i = arr.length-1; i >= 0; i--){
+            while(!s.isEmpty() && arr[i] >= s.peek()){
+                s.pop();
+            }
+
+            if(s.isEmpty()){
+                nxtGreat[i] = -1;
+            }else{
+                nxtGreat[i] = s.peek();
+            }
+
+            s.push(arr[i]);
+        }
+
+        return nxtGreat;
+    }
 
     public static void main(String args[]){
         // System.out.println("Hello");
@@ -85,12 +106,21 @@ public class StackPractice{
 
 
         //Stock Span
-        int stock[] = {100, 80, 60, 70, 60, 85, 100};
-        int span[] = new int[stock.length];
+        // int stock[] = {100, 80, 60, 70, 60, 85, 100};
+        // int span[] = new int[stock.length];
 
-        stockSpan(stock,span);
-        for(int i = 0; i < span.length; i++){
-            System.out.println(span[i]);
+        // stockSpan(stock,span);
+        // for(int i = 0; i < span.length; i++){
+        //     System.out.println(span[i]);
+        // }
+
+
+        //Next Greater Element
+
+        int arr[] = {6,8,0,1,3};
+        int nxtGreat[] = nextGreater(arr);
+        for(int i = 0; i < nxtGreat.length; i++){
+            System.out.print(nxtGreat[i]+", ");
         }
     }
 }
