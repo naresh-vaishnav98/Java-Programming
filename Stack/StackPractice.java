@@ -82,6 +82,34 @@ public class StackPractice{
         return nxtGreat;
     }
 
+    //Valid Parentheses
+
+    public static boolean validParentheses(char arr[]){
+        Stack<Character> s = new Stack<>();
+
+        for(int i = 0; i < arr.length; i++){
+            if(arr[i] == '(' || arr[i] == '{' || arr[i] == '['){
+                s.push(arr[i]);
+            }else if(arr[i] == ')' || arr[i] == '}' || arr[i] == ']'){
+                if(s.isEmpty()){
+                    return false;
+                }
+
+                if(arr[i] == ')' && s.peek() == '('){
+                    s.pop();
+                }else if(arr[i] == '}' && s.peek() == '{'){
+                    s.pop();
+                }else if(arr[i] == ']' && s.peek() == '['){
+                    s.pop();
+                }else{
+                    return false;
+                }
+            }
+        }
+
+        return s.isEmpty();
+    }
+
     public static void main(String args[]){
         // System.out.println("Hello");
         
@@ -117,10 +145,14 @@ public class StackPractice{
 
         //Next Greater Element
 
-        int arr[] = {6,8,0,1,3};
-        int nxtGreat[] = nextGreater(arr);
-        for(int i = 0; i < nxtGreat.length; i++){
-            System.out.print(nxtGreat[i]+", ");
-        }
+        // int arr[] = {6,8,0,1,3};
+        // int nxtGreat[] = nextGreater(arr);
+        // for(int i = 0; i < nxtGreat.length; i++){
+        //     System.out.print(nxtGreat[i]+", ");
+        // }
+
+        // char arr[] = {'(','(',')','[',']','{','}',')'};
+        char arr[] = {'{','}','(','[',')'};
+        System.out.println(validParentheses(arr));
     }
 }
