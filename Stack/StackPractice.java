@@ -180,6 +180,24 @@ public class StackPractice{
         System.out.println(maxArea);
     }
 
+    //Palindrome Linked List
+
+    public static boolean palindromeCheck(LinkedList<Character> ll){
+        Stack<Character> s = new Stack<>();
+        LinkedList<Character> list = new LinkedList<>();
+
+        ListIterator<Character> iterator = ll.listIterator();
+        while (iterator.hasNext()) {
+            // System.out.println(iterator.next());
+            s.push(iterator.next());
+        }
+
+        while(!s.isEmpty()){
+            list.addLast(s.pop());
+        }
+        return ll.equals(list);
+    }
+
     public static void main(String args[]){
         // System.out.println("Hello");
         
@@ -229,7 +247,17 @@ public class StackPractice{
         // System.out.println(isDuplicate(str));
 
         //Max Rectangular Area in Histogram
-        int arr[] = {2, 1, 5, 6, 2, 3};
-        maxArea(arr);
+        // int arr[] = {2, 1, 5, 6, 2, 3};
+        // maxArea(arr);
+
+
+        LinkedList<Character> ll = new LinkedList<>();
+        ll.addLast('A');
+        ll.addLast('B');
+        ll.addLast('C');
+        ll.addLast('B');
+        ll.addLast('A');
+
+        System.out.println(palindromeCheck(ll));
     }
 }
