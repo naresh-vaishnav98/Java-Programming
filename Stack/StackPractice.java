@@ -198,6 +198,31 @@ public class StackPractice{
         return ll.equals(list);
     }
 
+
+    public static void simplifyPath(String abs){
+        String str[] = abs.split("/");
+        Stack<String> s = new Stack<>();
+        for(String i : str){
+            // System.out.println(i);
+            if(i.equals("..") && !s.isEmpty()){
+                s.pop();
+            }else if(!i.equals("") && !i.equals(".") && !i.equals("..")){
+                s.push(i);
+            }
+        }
+
+        String res = "";
+        for(String ss : s){
+            res += "/";
+            res += ss;
+        }
+        if(res.length() == 0){
+            System.out.println("/");
+        }else{
+            System.out.println(res);
+        }
+    }
+
     public static void main(String args[]){
         // System.out.println("Hello");
         
@@ -251,13 +276,16 @@ public class StackPractice{
         // maxArea(arr);
 
 
-        LinkedList<Character> ll = new LinkedList<>();
-        ll.addLast('A');
-        ll.addLast('B');
-        ll.addLast('C');
-        ll.addLast('B');
-        ll.addLast('A');
+        // LinkedList<Character> ll = new LinkedList<>();
+        // ll.addLast('A');
+        // ll.addLast('B');
+        // ll.addLast('C');
+        // ll.addLast('B');
+        // ll.addLast('A');
 
-        System.out.println(palindromeCheck(ll));
+        // System.out.println(palindromeCheck(ll));
+
+        String path = "/a/./b/../../c/";
+        simplifyPath(path);
     }
 }
