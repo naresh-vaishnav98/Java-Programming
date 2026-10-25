@@ -41,23 +41,49 @@ public class QueuePractice{
         }
     }
 
+    public static void reverse(Queue<Integer> q){
+        Stack<Integer> s = new Stack<>();
+        while(!q.isEmpty()){
+            s.push(q.remove());
+        }
+
+        while(!s.isEmpty()){
+            q.add(s.pop());
+        }
+
+        while(!q.isEmpty()){
+            System.out.println(q.remove());
+        }
+    }
+
     public static void main(String args[]){
         //first Non Repeating
         // String str = "aabccxb";
         // firstNonRepeating(str);
 
         //InterLeves
+        // Queue<Integer> que = new LinkedList<>();
+        // que.add(1);
+        // que.add(2);
+        // que.add(3);
+        // que.add(4);
+        // que.add(5);
+        // que.add(6);
+        // que.add(7);
+        // que.add(8);
+        // que.add(9);
+        // que.add(10);
+        // interLeave2Halves(que);
+
+
+        //Reverse queue
         Queue<Integer> que = new LinkedList<>();
         que.add(1);
         que.add(2);
         que.add(3);
         que.add(4);
         que.add(5);
-        que.add(6);
-        que.add(7);
-        que.add(8);
-        que.add(9);
-        que.add(10);
-        interLeave2Halves(que);
+
+        reverse(que);
     }
 }
