@@ -56,6 +56,20 @@ public class QueuePractice{
         }
     }
 
+    public static void generateBinaryNumber(int n){
+        Queue<String> q = new LinkedList<>();
+        q.add("1");
+
+        for(int i = 0; i < n; i++){
+            String curr = q.remove();
+            System.out.print(curr + " ");
+
+            q.add(curr + "0");
+            q.add(curr + "1");
+        }
+        System.out.println();
+    }
+
     public static void main(String args[]){
         //first Non Repeating
         // String str = "aabccxb";
@@ -87,14 +101,17 @@ public class QueuePractice{
         // reverse(que);
 
         //Deque
-        Deque<Integer> q = new LinkedList<>();
-        q.addFirst(1);
-        q.addFirst(2);
-        q.addLast(3);
-        q.addLast(4);
-        System.out.println(q);
-        q.removeFirst();
-        q.removeLast();
-        System.out.println(q);
+        // Deque<Integer> q = new LinkedList<>();
+        // q.addFirst(1);
+        // q.addFirst(2);
+        // q.addLast(3);
+        // q.addLast(4);
+        // System.out.println(q);
+        // q.removeFirst();
+        // q.removeLast();
+        // System.out.println(q);
+
+
+        generateBinaryNumber(10);
     }
 }
