@@ -77,13 +77,24 @@ public class QueuePractice{
 
 
         //Reverse queue
-        Queue<Integer> que = new LinkedList<>();
-        que.add(1);
-        que.add(2);
-        que.add(3);
-        que.add(4);
-        que.add(5);
+        // Queue<Integer> que = new LinkedList<>();
+        // que.add(1);
+        // que.add(2);
+        // que.add(3);
+        // que.add(4);
+        // que.add(5);
 
-        reverse(que);
+        // reverse(que);
+
+        //Deque
+        Deque<Integer> q = new LinkedList<>();
+        q.addFirst(1);
+        q.addFirst(2);
+        q.addLast(3);
+        q.addLast(4);
+        System.out.println(q);
+        q.removeFirst();
+        q.removeLast();
+        System.out.println(q);
     }
 }
