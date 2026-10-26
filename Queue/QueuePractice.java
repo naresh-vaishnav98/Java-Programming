@@ -70,6 +70,26 @@ public class QueuePractice{
         System.out.println();
     }
 
+    public static int minCost(int arr[]){
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+
+        for(int length : arr){
+            pq.add(length);
+        }
+
+        int totalCost = 0;
+        while(pq.size() > 1){
+            int r1 = pq.remove();
+            int r2 = pq.remove();
+
+            int cost = r1 + r2;
+            totalCost += cost;
+
+            pq.add(cost);
+        }
+        return totalCost;
+    }
+
     public static void main(String args[]){
         //first Non Repeating
         // String str = "aabccxb";
@@ -112,6 +132,10 @@ public class QueuePractice{
         // System.out.println(q);
 
 
-        generateBinaryNumber(10);
+        // generateBinaryNumber(10);
+
+        //Min cost
+        int arr[] = {4, 3, 2, 6};
+        System.out.println(minCost(arr));
     }
 }
