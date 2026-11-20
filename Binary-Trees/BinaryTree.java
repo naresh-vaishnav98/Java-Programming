@@ -25,6 +25,16 @@ public class BinaryTree{
 
             return newNode;
         }
+
+        public static void traverseTree(Node root){
+
+            if(root == null){
+                return;
+            }
+            System.out.print(root.data+ " ");
+            traverseTree(root.left);
+            traverseTree(root.right);
+        }
     }
 
     public static void main(String args[]){
@@ -33,6 +43,8 @@ public class BinaryTree{
         BinTree b1 = new BinTree();
         Node root = b1.buildTree(nodes);
         System.out.println(root.data);
+
+        b1.traverseTree(root);
 
     }
 }
