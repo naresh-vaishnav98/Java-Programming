@@ -29,6 +29,7 @@ public class BinaryTree{
         public static void traverseTree(Node root){
 
             if(root == null){
+                System.out.print("-1 ");
                 return;
             }
             System.out.print(root.data+ " ");
