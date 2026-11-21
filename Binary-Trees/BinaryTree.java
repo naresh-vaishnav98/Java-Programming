@@ -143,6 +143,29 @@ public class BinaryTree{
 
             return Math.max(selfDiam, Math.max(Ldiam, Rdiam));
         }
+
+        static class info{
+            int diam;
+            int ht;
+
+            info(int diam, int ht){
+                this.diam = diam;
+                this.ht = ht;
+            }
+        }
+
+        public static info diameterHeight(Node root){
+            if(root == null){
+                return new info(0,0);
+            }
+            
+            info Linfo = diameterHeight(root.left);
+            info Rinfo = diameterHeight(root.right);
+            int diam = Math.max(Math.max(Linfo.diam, Rinfo.diam), Linfo.ht + Rinfo.ht + 1);
+            int ht = Math.max(Linfo.ht, Rinfo.ht) + 1;
+
+            return new info(diam, ht);
+        }
     }
 
     public static void main(String args[]){
@@ -179,6 +202,10 @@ public class BinaryTree{
         System.out.println();
         System.out.print("Diameter of Tree : ");
         System.out.println(b1.diameter(root));
+
+        System.out.println();
+        System.out.print("Diameter and Height of Tree : ");
+        System.out.println(b1.diameterHeight(root).diam +", " + b1.diameterHeight(root).ht);
 
     }
 }
