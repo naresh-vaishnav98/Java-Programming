@@ -249,6 +249,20 @@ public class BinaryTree{
             }
         }
 
+        public static void kthLevel(Node root, int level, int k){
+            if(root == null){
+                return;
+            }
+
+            if(level == k){
+                System.out.print(root.data + " ");
+                return;
+            }
+
+            kthLevel(root.left, level + 1, k);
+            kthLevel(root.right, level + 1, k);
+        }
+
     }
 
     public static void main(String args[]){
@@ -301,6 +315,11 @@ public class BinaryTree{
         System.out.println();
         System.out.print("Top-View Node : ");
         b1.topView(root);
+
+        System.out.println();
+        System.out.print("Kth Level Node : ");
+        // System.out.println(b1.kthLevel(root, 1, 3));
+        b1.kthLevel(root, 1, 3);
 
     }
 }
