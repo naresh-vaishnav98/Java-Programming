@@ -263,6 +263,31 @@ public class BinaryTree{
             kthLevel(root.right, level + 1, k);
         }
 
+        //Lowest Common Ancestor
+
+        public static Node LCA(Node root, Node p, Node q){
+            if(root == null){
+                return null;
+            }
+
+            if(root == p || root == q){
+                return root;
+            }
+
+            Node left = LCA(root.left, p, q);
+            Node right = LCA(root.right, p, q);
+
+            if(left != null && right != null){
+                return root;
+            }
+
+            if(left != null){
+                return left;
+            }else{
+                return right;
+            }
+        }
+
     }
 
     public static void main(String args[]){
@@ -320,6 +345,10 @@ public class BinaryTree{
         System.out.print("Kth Level Node : ");
         // System.out.println(b1.kthLevel(root, 1, 3));
         b1.kthLevel(root, 1, 3);
+
+        System.out.println();
+        System.out.print("Lowest Common Ancestor : ");
+        System.out.println(b1.LCA(root, root.left.left, root.left.right).data);
 
     }
 }
