@@ -202,6 +202,53 @@ public class BinaryTree{
             return isSubtree(root.left,subRoot) || isSubtree(root.right,subRoot);
         }
 
+
+        //Top View
+
+        static class Pair{
+            int hd;
+            Node node;
+
+            Pair(Node node, int hd){
+                this.hd = hd;
+                this.node = node;
+            }
+        }
+
+        public static void topView(Node root){
+            
+            if(root == null){
+                return;
+            }
+
+            Queue<Pair> que = new LinkedList<>();
+            TreeMap<Integer, Integer> map = new TreeMap<>();
+
+            que.add(new Pair(root,0));
+            
+            while(!que.isEmpty()){
+                Pair curr = que.remove();
+                Node node = curr.node;
+                int hd = curr.hd;
+
+                if(!map.containsKey(hd)){
+                    map.put(hd, node.data);
+                }
+
+                if(node.left != null){
+                    que.add(new Pair(node.left, hd-1));
+                }
+
+                if(node.right != null){
+                    que.add(new Pair(node.right, hd+1));
+                }
+            }
+
+            for(int top : map.values()){
+                System.out.print(top + " ");
+            }
+        }
+
     }
 
     public static void main(String args[]){
@@ -250,6 +297,10 @@ public class BinaryTree{
         System.out.println();
         System.out.print("Subtree Or Not : ");
         System.out.println(b1.isSubtree(root, newNode));
+
+        System.out.println();
+        System.out.print("Top-View Node : ");
+        b1.topView(root);
 
     }
 }
