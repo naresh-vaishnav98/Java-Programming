@@ -350,6 +350,21 @@ public class BinaryTree{
             return max+1;
         }
 
+        public static int transformSumTree(Node root){
+            if(root == null){
+                return 0;
+            }
+
+            int leftSum = transformSumTree(root.left);
+            int rightSum = transformSumTree(root.right);
+
+            int oldVal = root.data;
+
+            root.data = leftSum + rightSum;
+
+            return oldVal + leftSum + rightSum;
+        }
+
     }
 
     public static void main(String args[]){
@@ -421,6 +436,10 @@ public class BinaryTree{
         System.out.println();
         System.out.print("Kth Ancestor of a Node : ");
         System.out.println(b1.KthAncestor(root, 4, 2));
+
+        System.out.println();
+        System.out.print("Transform to Sum Tree : ");
+        System.out.println(b1.transformSumTree(root));
 
     }
 }
