@@ -288,6 +288,42 @@ public class BinaryTree{
             }
         }
 
+        // Minimum distance between 2 nodes
+
+        public static int findDistance(Node root, Node target, int d){
+            if(root == null){
+                return -1;
+            }
+
+            if(root.data == target.data){
+                return d;
+            }
+
+            int left = findDistance(root.left, target, d + 1);
+            if(left != -1){
+                return left;
+            }
+
+            return findDistance(root.right, target, d + 1);
+        }
+
+        public static int minDistanceBtwNodes(Node root, Node n1, Node n2){
+            Node lca = LCA(root, n1, n2);
+
+            if(lca == null){
+                return -1;
+            }
+
+            int d1 = findDistance(lca, n1, 0);
+            int d2 = findDistance(lca, n2, 0);
+
+            if(d1 == -1 || d2 == -1){
+                return -1;
+            }
+
+            return d1 + d2;
+        }
+
     }
 
     public static void main(String args[]){
@@ -349,6 +385,11 @@ public class BinaryTree{
         System.out.println();
         System.out.print("Lowest Common Ancestor : ");
         System.out.println(b1.LCA(root, root.left.left, root.left.right).data);
+
+
+        System.out.println();
+        System.out.print("Min-Distance Between 2 nodes : ");
+        System.out.println(b1.minDistanceBtwNodes(root, root.left.left, root.left.right));
 
     }
 }
