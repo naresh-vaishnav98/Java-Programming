@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class BuildBST {
 
     public static class Node{
@@ -102,8 +104,23 @@ public class BuildBST {
             printInRange(root.left, k1, k2);
         }
     }
+
+    public static void rootToLeaf(Node root, ArrayList<Integer> path){
+        if (root == null) {
+            return;
+        }
+        path.add(root.data);
+        if (root.left == null && root.right == null) {
+            System.out.println(path);
+        }
+
+        rootToLeaf(root.left, path);
+        rootToLeaf(root.right, path);
+        path.remove(path.size() - 1);
+    }
     public static void main(String args[]){
         int values[] = {5, 1, 3, 4, 2, 7};
+        // int values[] = {8,5,3,6,10,11,14};
         Node root = null;
 
 
@@ -122,5 +139,9 @@ public class BuildBST {
 
         System.out.println();
         printInRange(root,3,6);
+
+        System.out.println();
+        ArrayList<Integer> path = new ArrayList<>();
+        rootToLeaf(root, path);
     }
 }
