@@ -132,6 +132,21 @@ public class BuildBST {
 
         return isValidBST(root.left, min, root) && isValidBST(root.right, root, max);
     }
+
+    public static Node mirrorBST(Node root){
+        if (root == null) {
+            return null;
+        }
+
+        Node left = mirrorBST(root.left);
+        Node right = mirrorBST(root.right);
+
+        root.left = right;
+        root.right = left;
+
+        return root;
+
+    }
     public static void main(String args[]){
         int values[] = {5, 1, 3, 4, 2, 7};
         // int values[] = {8,5,3,6,10,11,14};
@@ -160,5 +175,9 @@ public class BuildBST {
 
         System.out.println();
         System.out.print(isValidBST(root, null, null));
+
+        System.out.println();
+        System.out.println(mirrorBST(root).data);
+        inOrder(root);
     }
 }
