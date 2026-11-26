@@ -32,6 +32,61 @@ public class BuildBST {
         System.out.print(root.data + " ");
         inOrder(root.right);
     }
+
+    public static Node searchNode(Node root, int target){
+        if(root == null){
+            return null;
+        }
+
+        if(root.data == target){
+            return root;
+        }
+        
+        if(root.data > target){
+            return searchNode(root.left,target);
+        }else{
+            return searchNode(root.right,target);
+        }
+    }
+
+    public static Node deleteNode(Node root, int key){
+        // if (root == null) {
+        //     return null;
+        // }
+
+        // if (root.data == key) {
+        //     return root;
+        // }
+
+        if (root.data > key) {
+            root.left = deleteNode(root.left, key);
+        }else if (root.data < key) {
+            root.right = deleteNode(root.right, key);
+        }else{
+            if (root.left == null && root.right == null) {
+                return null;
+            }
+
+            if (root.left == null) {
+                return root = root.right;
+            }else if (root.right == null) {
+                return root = root.left;
+            }
+
+            Node InorderSuccessor = findInorderSuccessor(root.right);
+            root.data = InorderSuccessor.data;
+            root.right = deleteNode(root.right, InorderSuccessor.data);
+            
+        }
+        return root;
+    }
+
+    public static Node findInorderSuccessor(Node root){
+        while (root.left != null) {
+            root = root.left;
+        }
+        return root;
+    }
     public static void main(String args[]){
         int values[] = {5, 1, 3, 4, 2, 7};
         Node root = null;
@@ -41,6 +96,13 @@ public class BuildBST {
             root = insertNode(root, values[i]);
         }
         
+        inOrder(root);
+
+        System.out.println();
+        // System.out.println(searchNode(root, 7).data);
+
+        System.out.println();
+        root = deleteNode(root, 5);
         inOrder(root);
     }
 }
