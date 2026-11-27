@@ -159,6 +159,24 @@ public class BuildBST {
         root.right = createBalancedBST(arr, mid+1, end);
         return root;
     }
+
+
+    public static ArrayList<Integer> newInOrder(ArrayList<Integer> arr, Node root){
+        if (root == null) {
+            return arr;
+        }
+        newInOrder(arr, root.left);
+        arr.add(root.data);
+        newInOrder(arr, root.right);
+        return arr;
+    }
+
+    public static Node convertToBalancedBST(ArrayList<Integer> arr, Node root){
+        arr = newInOrder(arr, root);
+
+        int[] array = arr.stream().mapToInt(Integer::intValue).toArray();
+        return createBalancedBST(array,0,array.length-1);
+    }
     public static void main(String args[]){
         int values[] = {5, 1, 3, 4, 2, 7};
         // int values[] = {8,5,3,6,10,11,14};
@@ -197,5 +215,15 @@ public class BuildBST {
         System.out.println("Balanced BST Root : "+createBalancedBST(arr,0,arr.length-1).data);
         inOrder(createBalancedBST(arr,0,arr.length-1));
 
+        System.out.println();
+        ArrayList<Integer> array = new ArrayList<>();
+        Node newRoot = new Node(8);
+        newRoot.left = new Node(6);
+        newRoot.left.left = new Node(5);
+        newRoot.left.left.left = new Node(3);
+        newRoot.right = new Node(10);
+        newRoot.right.right = new Node(11);
+        newRoot.right.right.right = new Node(12);
+        System.out.println(convertToBalancedBST(array,newRoot).right.right.data);
     }
 }
