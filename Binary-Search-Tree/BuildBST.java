@@ -215,6 +215,16 @@ public class BuildBST {
 
         return new info(false, Math.max(leftMax.size, rightMax.size), Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
+
+
+    public static Node merge2BSTs(ArrayList<Integer> arr, Node root1, Node root2){
+        arr = newInOrder(arr, root1);
+        arr = newInOrder(arr, root2);
+
+        Collections.sort(arr);
+        int[] array = arr.stream().mapToInt(Integer::intValue).toArray();
+        return createBalancedBST(array,0,arr.size()-1);
+    }
     public static void main(String args[]){
         int values[] = {5, 1, 3, 4, 2, 7};
         // int values[] = {8,5,3,6,10,11,14};
@@ -268,5 +278,14 @@ public class BuildBST {
         maxBST = 0;
         largestBST_Size(newRoot);
         System.out.println(maxBST);
+
+        System.out.println();
+        ArrayList<Integer> newArrayList = new ArrayList<>();
+        System.out.println();
+        inOrder(newRoot);
+        System.out.println();
+        inOrder(root);
+        System.out.println();
+        System.out.println(merge2BSTs(newArrayList, root, newRoot).data);
     }
 }
