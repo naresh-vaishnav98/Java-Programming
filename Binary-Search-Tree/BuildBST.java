@@ -147,6 +147,18 @@ public class BuildBST {
         return root;
 
     }
+
+    //Sorted Array to balanced BST
+    public static Node createBalancedBST(int arr[], int start, int end){
+        if (start > end) {
+            return null;
+        }
+        int mid = (start + end) / 2;
+        Node root = new Node(arr[mid]);
+        root.left = createBalancedBST(arr, start, mid-1);
+        root.right = createBalancedBST(arr, mid+1, end);
+        return root;
+    }
     public static void main(String args[]){
         int values[] = {5, 1, 3, 4, 2, 7};
         // int values[] = {8,5,3,6,10,11,14};
@@ -179,5 +191,11 @@ public class BuildBST {
         System.out.println();
         System.out.println(mirrorBST(root).data);
         inOrder(root);
+
+        System.out.println();
+        int arr[] = {3, 5, 6, 8, 10, 11, 12};
+        System.out.println("Balanced BST Root : "+createBalancedBST(arr,0,arr.length-1).data);
+        inOrder(createBalancedBST(arr,0,arr.length-1));
+
     }
 }
