@@ -177,6 +177,44 @@ public class BuildBST {
         int[] array = arr.stream().mapToInt(Integer::intValue).toArray();
         return createBalancedBST(array,0,array.length-1);
     }
+
+    public static class info{
+        Boolean isBST;
+        int size;
+        int min;
+        int max;
+
+        info(Boolean isBST, int size, int min, int max){
+            this.isBST = isBST;
+            this.size = size;
+            this.min = min;
+            this.max = max;
+        }
+    }
+
+    static int maxBST = 0;
+    public static info largestBST_Size(Node root){
+        if (root == null) {
+            return new info(true, 0, Integer.MAX_VALUE, Integer.MIN_VALUE);
+        }
+
+        info leftMax = largestBST_Size(root.left);
+        info rightMax = largestBST_Size(root.right);
+
+
+        if (leftMax.isBST && rightMax.isBST && root.data > leftMax.max && root.data < rightMax.min) {
+            int size = leftMax.size + rightMax.size + 1;
+
+            maxBST = Math.max(maxBST, size);
+
+            int min = Math.min(root.data, leftMax.min);
+            int max = Math.max(root.data, rightMax.max);
+
+            return new info(true, size, min, max);
+        }
+
+        return new info(false, Math.max(leftMax.size, rightMax.size), Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
     public static void main(String args[]){
         int values[] = {5, 1, 3, 4, 2, 7};
         // int values[] = {8,5,3,6,10,11,14};
@@ -225,5 +263,10 @@ public class BuildBST {
         newRoot.right.right = new Node(11);
         newRoot.right.right.right = new Node(12);
         System.out.println(convertToBalancedBST(array,newRoot).right.right.data);
+
+        System.out.println();
+        maxBST = 0;
+        largestBST_Size(newRoot);
+        System.out.println(maxBST);
     }
 }
