@@ -100,6 +100,75 @@ public class AVL_Tree {
 
         return root;
     }
+
+    public static Node minValue(Node root){
+        Node curr = root;
+        while (curr != null) {
+            curr = curr.left;
+        }
+
+        return curr;
+    }
+
+    public static Node deleteNode(Node root, int key){
+        if (root == null) {
+            return null;
+        }
+
+        if (root.data > key) {
+            deleteNode(root.left, key);
+        }else if (root.data > key) {
+            deleteNode(root.right, key);
+        }else{
+            if (root.left == null || root.right == null) {
+                Node temp = (root.left == null) ? root.right : root.left;
+
+                if (temp == null) {
+                    root = null;
+                }else{
+                    root = temp;
+                }
+            }else{
+                Node temp = minValue(root.right);
+                root.data = temp.data;
+                root.right = deleteNode(root.right, temp.data);
+            }
+        }
+
+        if (root == null) {
+            return null;
+        }
+
+
+        // Update Height
+        root.height = 1 + Math.max(height(root.left),height(root.right));
+
+        int bf = bf(root);
+
+        // LL Case
+        if (bf > 1 && bf(root.left) >= 0) {
+            return rightRotate(root);
+        }
+
+        // LR Case
+        if (bf > 1 && bf(root.left) < 0) {
+            root.left = leftRotate(root.left);
+            return rightRotate(root);
+        }
+
+        // RR Case
+        if (bf < -1 && bf(root.right) <= 0) {
+            return leftRotate(root);
+        }
+
+        // RL Case
+        if (bf < -1 && bf(root.right) > 0) {
+            root.right = rightRotate(root.right);
+            return leftRotate(root);
+        }
+
+        return root;
+    }
     public static void main(String args[]){
         Node root = new Node(1);
         insertNode(root, 2);
